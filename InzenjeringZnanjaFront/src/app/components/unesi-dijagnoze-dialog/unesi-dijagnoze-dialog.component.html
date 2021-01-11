@@ -1,0 +1,52 @@
+<mat-card class="papper" style="width: 600px; height: 800;">
+    <mat-card-header>
+        <h3 class="card-container-left">Odaberi dijagnoze</h3>
+        <h3 class="card-container-right">Preporucene terapije</h3>
+    </mat-card-header>
+    <mat-card-content>
+        <hr>
+        <button mat-icon-button [disabled]="!validateListuDijagnoza()" (click)="getDijagnoze()" style="margin-left: 10%;">
+            <mat-icon style="color: rgb(199, 69, 30)">refresh</mat-icon>
+        </button>
+        <button mat-icon-button [disabled]="!validateListuDijagnoza()" (click)="getLekovi()" style="float: right; margin-right: 10%;">
+            <mat-icon style="color: rgb(199, 69, 30)">refresh</mat-icon>
+        </button>
+        <mat-grid-list cols="2" rowHeight="2:1">
+            <mat-grid-tile *ngIf="validateListuDijagnoza()" [rowspan]="3">
+                <mat-selection-list [style.overflow]="'auto'" [style.height.px]="'450'" style="height: 450;"
+                    class="scroll-me" name="selectedOptions" [(ngModel)]="selectedOptions"
+                    (ngModelChange)="onNgModelChange($event)">
+                    <mat-list-option *ngFor="let dijagnoza of listaSvihDijagnoza" [value]="dijagnoza">
+                        {{dijagnoza.name}}
+                    </mat-list-option>
+                </mat-selection-list>
+            </mat-grid-tile>
+            <mat-grid-tile *ngIf="!validateListuDijagnoza()" [rowspan]="3" style="height: 510;">
+                <h4 style="color: #b1b1b1;">
+                    Trenutno nema unetih dijagnoza za ovaj pregled.
+                </h4>
+            </mat-grid-tile>
+            <mat-grid-tile [rowspan]="3" style="height: 450;">
+                <mat-selection-list [style.overflow]="'auto'" [style.height.px]="'450'" style="height: 450;"
+                    class="scroll-me" [(ngModel)]="odabraniLekovi"
+                    (ngModelChange)="onNgModelChangeLek($event)">
+                    <mat-list-option *ngFor="let lek of listaLekova" [value]="lek">
+                        {{lek.name}}
+                    </mat-list-option>
+                </mat-selection-list>
+                <!-- <mat-list style="border: 0;" class="scroll-me" [style.height.vh]="'70'"
+                    style="margin-top: 30%;height: 600; border:0px solid gray;">
+                    <mat-list-item *ngFor="let lek of listaLekova">
+                        {{lek.lek}}
+                    </mat-list-item>
+                </mat-list> -->
+            </mat-grid-tile>
+        </mat-grid-list>
+        <button mat-raised-button color="primary" [disabled]="!validatePronadji()" (click)="dodajDijagnozeCBR()">Nadji
+            terapiju CBR</button>
+        <button mat-raised-button color="primary" style="margin-left: 10px;" [disabled]="!validatePronadji()"
+            (click)="dodajDijagnozeRBR()">Nadji terapiju RBR</button>
+        <button mat-raised-button color="primary" style="margin-left: 10px;" [disabled]="!validateSavucaj()"
+            (click)="sacuvajTerapiju()">Sacuvaj terapije</button>
+    </mat-card-content>
+</mat-card>

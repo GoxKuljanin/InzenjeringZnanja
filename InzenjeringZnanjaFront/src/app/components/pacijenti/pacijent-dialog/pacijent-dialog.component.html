@@ -1,0 +1,38 @@
+<div style="width: 600; height: 700;">
+    <h3 *ngIf="flag==1">Dodajte novog pacijenta</h3>
+    <h3 *ngIf="flag==2">Izmenite pacijenta</h3>
+    <h3 *ngIf="flag==3">Izbrisite pacijenta</h3>
+    <hr>
+    <mat-card-content>
+        <form class="example-form"  >
+            <mat-form-field class="example-full-width" style="width:100%" appearance="fill">
+                <input [disabled]="flag==3" matInput placeholder="Ime" maxlength="30" type="text" [(ngModel)]="firstname"
+                    [ngModelOptions]="{standalone: true}" required>
+                    <mat-label>Ime</mat-label>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" style="width:100%" appearance="fill">
+                <input [disabled]="flag==3" matInput placeholder="Prezime" maxlength="30" type="text" [(ngModel)]="lastname"
+                    [ngModelOptions]="{standalone: true}" required>
+                    <mat-label>Prezime</mat-label>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="flag==1" class="example-full-width" style="width:100%" appearance="fill">
+                <input matInput placeholder="m/f" maxlength="30" type="text" [(ngModel)]="pol"
+                    [ngModelOptions]="{standalone: true}" required>
+                    <mat-label>Pol</mat-label>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="flag==1" class="example-full-width" style="width:100%" appearance="fill">
+                <input matInput placeholder="White/Black/Other" maxlength="30" type="text" [(ngModel)]="rasa"
+                    [ngModelOptions]="{standalone: true}" required>
+                    <mat-label>Rasa</mat-label>
+            </mat-form-field>
+
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button *ngIf="flag==1" style="float:right" mat-flat-button color="warn" [disabled]="!validateSubmit()" class="btn-block" type="submit" (click)="onSubmit()">Potvrdi</button>
+        <button *ngIf="flag==2" style="float:right" mat-flat-button color="warn" [disabled]="!validateEditSubmit()" class="btn-block" type="submit" (click)="onSubmit()">Potvrdi</button>
+        <button *ngIf="flag==3" style="float:right" mat-flat-button color="warn" class="btn-block" type="submit" (click)="onSubmit()">Potvrdi</button>
+    </mat-card-actions>
+</div>

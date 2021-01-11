@@ -1,0 +1,103 @@
+<mat-card style="min-height: 85vh;">
+  <mat-card-content>
+    <div style="margin-top: 2vh;margin-bottom: 2vh;">
+      <h1 style=" margin-left: 10%;display: inline-block; font-size: 2.5em ;">Inzenjering znanja 2020</h1>
+      <button routerLink="/pacijent"
+      style="margin-left: 55%;margin-bottom: 30px; margin-top: 30px; display: inline-block; " mat-fab color="warn" aria-label="Example icon button with a home icon">
+        <mat-icon>home</mat-icon>
+      </button>
+      <hr>
+    </div> 
+    <button style="float: right;" mat-mini-fab color="warn" aria-label="Example icon button with a home icon" (click)="onNoviPregled()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDisableClear  matSortDirection="desc">
+
+        <!-- Id  -->
+        <ng-container matColumnDef="id" style="width: 10%;">
+          <th mat-header-cell *matHeaderCellDef style="width: 120px;" mat-sort-header>ID Pregleda</th>
+          <td mat-cell *matCellDef="let pregled"> {{pregled.id}} </td>
+        </ng-container>
+
+        <!-- Simptomi -->
+        <ng-container matColumnDef="simptomi">
+          <th mat-header-cell *matHeaderCellDef>Simptomi</th>
+          <td mat-cell *matCellDef="let pregled">
+              <button style="width: 80%;" color="warn" *ngIf="!simptomiValid(pregled)" mat-stroked-button (click)="unesiSimptome(pregled)">Unesi
+              simptome </button> 
+              <mat-expansion-panel *ngIf="simptomiValid(pregled)" style="width: 80%;">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Simptomi:
+                  </mat-panel-title> 
+                </mat-expansion-panel-header> 
+                <p *ngFor="let element of pregled.simptomi">-{{element.name}}</p> 
+              </mat-expansion-panel>
+          </td>
+        </ng-container>
+
+        <!-- Testovi -->
+        <ng-container matColumnDef="testovi">
+          <th mat-header-cell *matHeaderCellDef>Testovi</th>
+          <td mat-cell *matCellDef="let pregled">
+             <button style="width: 80%;" color="warn" *ngIf="!testoviValid(pregled)" mat-stroked-button (click)="unesiTestove(pregled)">Unesi
+              testove 
+            </button> 
+            
+              <mat-expansion-panel *ngIf="testoviValid(pregled)" style="width: 80%;">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Testovi:
+                  </mat-panel-title> 
+                </mat-expansion-panel-header> 
+                <p *ngFor="let element of pregled.testovi">-{{element.name}}</p> 
+              </mat-expansion-panel>
+            </td>
+          <!--Ovo ubaciti za testove (click)="unesiTetove(pacijent)" -->
+        </ng-container>
+
+        <!-- Dijagnoze -->
+        <ng-container matColumnDef="dijagnoze">
+          <th mat-header-cell *matHeaderCellDef>Dijagnoze</th>
+          <td mat-cell *matCellDef="let pregled"> 
+              <button style="width: 80%;" color="warn" *ngIf="!dijagnozeValid(pregled)" mat-stroked-button (click)="unesiDijagnoze(pregled)">Unesi
+                dijagnoze 
+              </button> 
+                <mat-expansion-panel *ngIf="dijagnozeValid(pregled)" style="width: 80%;">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Dijagnoze:
+                    </mat-panel-title> 
+                  </mat-expansion-panel-header> 
+                  <p *ngFor="let element of pregled.dijagnoze">-{{element.name}}</p> 
+                </mat-expansion-panel>
+
+          </td>
+        </ng-container>
+
+        <!-- Lekovi -->
+        <ng-container matColumnDef="lekovi">
+          <th mat-header-cell *matHeaderCellDef>Lekovi</th>
+          <td mat-cell *matCellDef="let pregled"> 
+            <p *ngIf="!lekoviValid(pregled)" style="width: 80%;margin-left: 40%;">-</p> 
+                <mat-expansion-panel *ngIf="lekoviValid(pregled)" style="width: 80%;">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Lekovi:
+                    </mat-panel-title> 
+                  </mat-expansion-panel-header> 
+                  <p *ngFor="let element of pregled.lekovi">-{{element.name}}</p> 
+                </mat-expansion-panel>
+
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <!-- Paginator -->
+      <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

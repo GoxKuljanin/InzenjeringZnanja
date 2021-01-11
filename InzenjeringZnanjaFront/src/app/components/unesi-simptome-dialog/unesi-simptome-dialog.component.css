@@ -1,0 +1,52 @@
+.card-container-right{
+    display: inline;
+    float: right;
+  }
+  .card-container-left{
+    display: inline;
+    margin-right: 20vh;
+  }
+
+  .mat-grid-tile .mat-figure {
+   justify-content: flex-start !important ;
+   align-items: flex-start !important;
+}
+/* .scroll-me {
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+
+  #list-1,
+    #list-2 {
+        width: 40%;
+        height: 330px;
+        margin-top: 40px;
+        box-shadow: 0 1px 4px #ddd;
+        border-bottom: 1px solid #ddd;
+    }
+
+    #btn {
+        float: left;
+        width: 5%;
+        padding-left: 30px;
+        margin-top: 67px;
+    }
+
+    #list-1 {
+        float: left;
+    }
+
+    #list-2 {
+        float: right;
+    }
+    #firstInput {
+        width: 40%;
+    }
+    #secondInput {
+        margin-left: 150px;
+        width: 60%;
+    }
+    #text2 {
+    margin-top: -23px;
+    margin-left: 200px;
+} */

@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* You can add global styles to this file, and also import other style files */
+
+    mat-list {
+        flex-grow: 1;
+        border: 3px solid green;
+        overflow: auto;
+    }
+footer {
+    bottom: 0;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    border: 0 1 0 0 solid lightgray;
+    background: rgb(204, 204, 204);
+    height: 15vh;
+}
+
+footer p {
+    float: right;
+    margin-top: 5vh;font-weight: bold;
+    color: rgb(97, 97, 97);
+}

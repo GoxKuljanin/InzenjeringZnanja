@@ -1,0 +1,13 @@
+.card-container-right{
+    display: inline;
+    float: right;
+  }
+  .card-container-left{
+    display: inline;
+    margin-right: 20vh;
+  }
+
+  .mat-grid-tile .mat-figure {
+   justify-content: flex-start !important ;
+   align-items: flex-start !important;
+}

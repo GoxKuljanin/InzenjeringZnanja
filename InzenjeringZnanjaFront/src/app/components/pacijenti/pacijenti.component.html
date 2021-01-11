@@ -1,0 +1,66 @@
+<mat-card style="min-height: 85vh;">
+  <mat-card-content>
+    <div style="margin-top: 2vh;margin-bottom: 2vh;">
+      <h1 style=" margin-left: 10%;display: inline-block; font-size: 2.5em ;">Inzenjering znanja 2020</h1>
+      <button routerLink="/pacijent"
+        style="margin-left: 55%;margin-bottom: 30px; margin-top: 30px; display: inline-block; " mat-fab color="warn"
+        aria-label="Example icon button with a home icon">
+        <mat-icon>home</mat-icon>
+      </button>
+      <hr>
+    </div>
+    <button style="float: right;" mat-mini-fab color="warn" aria-label="Example icon button with a home icon"
+      (click)="onNoviPacijent()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDisableClear  matSortDirection="asc">
+
+        <!-- Id  -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID Pacijenta</th>
+          <td mat-cell *matCellDef="let pacijent : Pacijent"> {{pacijent.id}} </td>
+        </ng-container>
+
+        <!-- Ime -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Ime Pacijenta</th>
+          <td mat-cell *matCellDef="let pacijent : Pacijent"> {{pacijent.name}} </td>
+        </ng-container>
+
+        <!-- Prezime -->
+        <ng-container matColumnDef="lastname">
+          <th mat-header-cell *matHeaderCellDef>Prezime Pacijenta</th>
+          <td mat-cell *matCellDef="let pacijent : Pacijent"> {{pacijent.lastname}} </td>
+        </ng-container>
+
+        <!-- Karton -->
+        <ng-container matColumnDef="karton">
+          <th mat-header-cell *matHeaderCellDef>Zdravstveni Karton</th>
+          <td mat-cell *matCellDef="let pacijent : Pacijent"> <button mat-flat-button color="warn"
+              (click)="onKarton(pacijent)">Prikazi
+              Zdravstveni Karton </button>
+          </td>
+        </ng-container>
+
+        <!-- Karton -->
+        <ng-container matColumnDef=" ">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let pacijent : Pacijent">
+            <button mat-icon-button (click)="onEdit(pacijent)">
+              <mat-icon style="color: rgb(43, 92, 156);">edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="onDelete(pacijent)">
+              <mat-icon style="color: rgb(128, 128, 128);">delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

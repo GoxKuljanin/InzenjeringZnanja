@@ -1,0 +1,27 @@
+<div style="width: 600; height: 700;">
+    <h3 *ngIf="flag==1">Dodajte novog pregleda</h3>
+    <h3 *ngIf="flag==2">Brisanje pregleda</h3>
+    <hr>
+    <mat-card-content *ngIf="flag==1">
+        <form class="example-form" (submit)="onSubmit()" >
+            <mat-form-field class="example-full-width" style="width:100%" appearance="fill">
+                <input matInput placeholder="Broj godina" maxlength="30" type="number" [(ngModel)]="godina"
+                    [ngModelOptions]="{standalone: true}" required>
+                    <mat-label>Broj godina</mat-label>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" style="width:100%" appearance="fill">
+                <input matInput placeholder="Tezina [kg]" maxlength="30" type="number" [(ngModel)]="tezina"
+                    [ngModelOptions]="{standalone: true}" required>
+                    <mat-label>Tezina</mat-label>
+            </mat-form-field>
+
+        </form>
+    </mat-card-content>
+    <mat-card-content *ngIf="flag==2">
+        <p>Da li ste sigurni da zelite da obrisete pregled?</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button style="float:right" mat-flat-button color="warn" *ngIf="flag==1" [disabled]="disabledButton()"  class="btn-block" type="submit" (click)="unesiPregled()">Potvrdi</button>
+        <button style="float:right" mat-flat-button color="warn" *ngIf="flag==2" class="btn-block" type="submit" (click)="obrisiPregled()">Potvrdi</button>
+    </mat-card-actions>
+</div>
